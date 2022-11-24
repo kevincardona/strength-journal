@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  api:
+    build: ./api
+    environment:
+      - MONGODB_URL=mongodb://host.docker.internal/strength-journal-db
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+  mongodb:
+    image : mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    restart: always
