@@ -1,15 +1,9 @@
 FROM node:18
-
-WORKDIR /usr/src/app
-
+ENV APP_PATH=/usr/src/app
+WORKDIR $APP_PATH
 COPY yarn.lock ./
 COPY package.json ./
-
 RUN yarn install
-
 COPY . .
-
 RUN yarn build
-
-# Start the server using the production build
 CMD [ "node", "dist/main.js" ]
