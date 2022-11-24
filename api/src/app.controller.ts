@@ -23,4 +23,9 @@ export class AppController {
   getProfile() {
     return "Success!";
   }
+
+  @Get('health')
+  getHealth() {
+    return "200";
+  }
 }
