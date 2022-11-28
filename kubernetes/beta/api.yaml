@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strength-journal-api
+  labels:
+    app: strength-journal-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strength-journal-api
+  template:
+    metadata:
+      labels:
+        app: strength-journal-api
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name:  strength-journal-api
+        image: 192.168.0.63:5000/strength-journal-api:latest
+        imagePullPolicy: "Always"
+        env:
+          - name: MONGODB_URL
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: db-credentials
+        ports:
+        - containerPort: 80

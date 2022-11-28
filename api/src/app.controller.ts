@@ -26,6 +26,6 @@ export class AppController {
 
   @Get('health')
   getHealth() {
-    return "200";
+    return "200 - Success!";
   }
 }
