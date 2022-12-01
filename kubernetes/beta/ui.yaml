@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strength-journal-ui
+  labels:
+    app: strength-journal-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strength-journal-ui
+  template:
+    metadata:
+      labels:
+        app: strength-journal-ui
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name:  strength-journal-ui
+        image: 192.168.0.63:5000/strength-journal-ui:latest
+        imagePullPolicy: "Always"
+        env:
+          - name: REACT_APP_API_URL
+            value: http://localhost:3001
+        ports:
+        - containerPort: 80

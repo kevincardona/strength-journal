@@ -1,5 +1,14 @@
 version: '3.9'
 services:
+  ui:
+    build: ./ui
+    environment:
+      - REACT_APP_API_URL=http://host.docker.internal:3001
+    ports:
+      - 3000:80
+    depends_on:
+      - api
+    restart: unless-stopped
   api:
     build: ./api
     environment:
